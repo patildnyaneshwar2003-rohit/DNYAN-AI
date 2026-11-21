@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#080d18">
+<meta name="description" content="DNYAN AI - your personal intelligent assistant">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<title>DNYAN AI</title>
+<style>
+:root{color-scheme:dark;--bg:#080d18;--panel:#101a2b;--panel2:#142239;--line:#243650;--text:#eef5ff;--muted:#91a4bf;--cyan:#42d7f5;--blue:#638bff;--green:#3ddc97;--danger:#ff7185;--shadow:0 18px 50px #0006}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at 80% -10%,#17345a 0,transparent 38%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,sans-serif;min-height:100vh}
+button,input,textarea{font:inherit}button{cursor:pointer;color:inherit}.app{max-width:1200px;margin:auto;padding:18px 18px 100px}.top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}.brand{display:flex;align-items:center;gap:11px}.logo{width:43px;height:43px;border-radius:14px;background:linear-gradient(135deg,#42d7f5,#596dff);display:grid;place-items:center;color:#06101c;font-weight:900;font-size:22px;box-shadow:0 8px 28px #42d7f544}.brand h1{font-size:19px;letter-spacing:1.5px;margin:0}.brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:2px}.status{display:flex;align-items:center;gap:7px;padding:8px 11px;border:1px solid var(--line);border-radius:30px;color:#b8c9df;font-size:12px}.dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green)}
+.hero{border:1px solid #294363;border-radius:25px;padding:25px;background:linear-gradient(120deg,#12223aee,#101a2beF 65%,#162a49);box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;border:1px solid #4dd8f522;right:-70px;top:-100px;box-shadow:0 0 0 25px #4dd8f50a,0 0 0 55px #4dd8f508}.eyebrow{color:var(--cyan);font-size:11px;font-weight:700;letter-spacing:2px}.hero h2{font-size:clamp(27px,5vw,42px);line-height:1.12;margin:10px 0}.hero p{color:#aebed3;max-width:600px;margin:0 0 18px}.pill{display:inline-flex;align-items:center;gap:7px;border:1px solid #2c496b;background:#0b1729;border-radius:30px;padding:7px 11px;font-size:11px;color:#b9d7f4}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:15px}.card{background:linear-gradient(145deg,#111d30,#0e1727);border:1px solid var(--line);border-radius:19px;padding:17px;min-width:0}.wide{grid-column:span 8}.side{grid-column:span 4}.half{grid-column:span 6}.third{grid-column:span 4}.card h3{font-size:14px;margin:0 0 13px;color:#dceaff}.muted{color:var(--muted)}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}.stat{padding:13px;background:#0a1424;border:1px solid #1e3049;border-radius:14px}.stat b{display:block;font-size:23px}.stat span{font-size:11px;color:var(--muted)}.quick{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.quick button,.action{border:1px solid #29405e;background:#12223a;border-radius:13px;padding:12px;text-align:left;transition:.18s}.quick button:hover,.action:hover{border-color:var(--cyan);transform:translateY(-1px)}.quick strong{display:block;font-size:13px}.quick small{color:var(--muted);font-size:11px}.icon{font-size:20px;display:block;margin-bottom:5px}.task{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #1e2d43}.task:last-child{border:0}.task .check{width:20px;height:20px;border:1px solid #45617f;border-radius:6px;display:grid;place-items:center;background:#0a1424;flex:none}.task.done .check{background:#164c3c;border-color:#2cae7c}.task.done .taskname{text-decoration:line-through;color:#8294aa}.taskname{font-size:13px;flex:1}.tag{font-size:10px;color:#9bdff0;background:#123448;padding:4px 7px;border-radius:20px}
+.nav{display:flex;gap:7px;overflow:auto;margin:18px 0}.nav button{white-space:nowrap;border:1px solid transparent;background:transparent;color:var(--muted);padding:9px 13px;border-radius:11px;font-size:13px}.nav button.active{background:#142844;border-color:#294565;color:#fff}
+.view{display:none}.view.active{display:block}.chatbox{height:min(48vh,420px);min-height:230px;overflow:auto;background:#091322;border:1px solid #20334d;border-radius:15px;padding:14px;margin-bottom:12px}.msg{max-width:88%;padding:11px 13px;border-radius:14px;margin:8px 0;font-size:13px;white-space:pre-wrap}.bot{background:#15263e;border:1px solid #263e5c}.user{background:#16435a;border:1px solid #24708b;margin-left:auto}.composer{display:flex;gap:8px}.composer input{min-width:0;flex:1;background:#0a1424;border:1px solid #2a405c;border-radius:13px;padding:12px;color:var(--text);outline:none}.primary{background:linear-gradient(135deg,#37cce9,#687dff);border:0;border-radius:13px;color:#06101d;font-weight:800;padding:11px 16px}.secondary{background:#14233a;border:1px solid #2b4362;border-radius:12px;padding:10px 13px}.field{display:grid;gap:6px;margin:12px 0}.field label{font-size:12px;color:var(--muted)}.field input{width:100%;background:#091423;border:1px solid #2a405c;border-radius:11px;padding:11px;color:var(--text)}.notice{font-size:12px;color:#a8bad0;background:#111f33;border:1px solid #293d59;border-radius:13px;padding:12px}.footer{text-align:center;color:#657b98;font-size:11px;margin-top:25px}.mobilebar{display:none}
+@media(max-width:760px){.app{padding:14px 13px 90px}.wide,.side,.half,.third{grid-column:span 12}.hero{padding:20px}.stats{gap:7px}.stat{padding:10px}.stat b{font-size:20px}.mobilebar{display:flex;position:fixed;bottom:0;left:0;right:0;z-index:5;background:#0b1423ed;border-top:1px solid #253750;backdrop-filter:blur(15px);justify-content:space-around;padding:9px 5px calc(9px + env(safe-area-inset-bottom))}.mobilebar button{background:none;border:0;color:#8fa5c0;font-size:10px;display:grid;gap:3px;justify-items:center}.mobilebar button.active{color:var(--cyan)}.mobilebar span{font-size:19px}.nav{display:none}.status{font-size:10px}}
+</style>
+</head>
+<body>
+<div class="app">
+<header class="top">
+  <div class="brand"><div class="logo">D</div><div><h1>DNYAN AI</h1><small>PERSONAL INTELLIGENT AGENT</small></div></div>
+  <div class="status"><i class="dot"></i><span id="systemStatus">SYSTEM READY</span></div>
+</header>
+<section class="hero">
+  <div class="eyebrow">YOUR PERSONAL AI WORKSPACE</div>
+  <h2>Think bigger.<br><span style="color:var(--cyan)">Build smarter.</span></h2>
+  <p>नमस्कार! मी DNYAN AI. तुझे Projects, Tasks आणि AI tools एका ठिकाणी व्यवस्थापित करण्यासाठी तयार आहे.</p>
+  <span class="pill">✦ Phase 1 · Foundation Preview</span>
+</section>
+<nav class="nav" id="topNav">
+  <button class="active" data-view="home">⌂ Overview</button><button data-view="chat">✧ Assistant</button><button data-view="tasks">▤ Tasks</button><button data-view="projects">▣ Projects</button><button data-view="settings">⚙ Settings</button>
+</nav>
+<main>
+<section class="view active" id="view-home">
+ <div class="grid">
+  <article class="card wide"><h3>Workspace Overview</h3><div class="stats"><div class="stat"><b id="taskCount">0</b><span>Active tasks</span></div><div class="stat"><b id="projectCount">2</b><span>Projects</span></div><div class="stat"><b>0</b><span>AI runs</span></div></div><p class="muted" style="font-size:12px;margin:14px 0 0">Phase 1 मध्ये dashboard आणि local workspace तयार आहे. Live AI connection पुढील phase मध्ये जोडला जाईल.</p></article>
+  <article class="card side"><h3>Agent Status</h3><div style="display:flex;align-items:center;gap:10px"><div class="logo" style="width:37px;height:37px;border-radius:12px">✦</div><div><b style="font-size:13px">DNYAN Core</b><div class="muted" style="font-size:11px">Local demo mode</div></div></div><p class="tag" style="display:inline-block;margin-top:13px">● Ready for setup</p></article>
+  <article class="card half"><h3>Quick Actions</h3><div class="quick">
+    <button data-go="chat"><span class="icon">✧</span><strong>Ask Assistant</strong><small>Start a conversation</small></button>
+    <button data-go="tasks"><span class="icon">＋</span><strong>Manage Tasks</strong><small>Track your work</small></button>
+    <button data-go="projects"><span class="icon">▣</span><strong>My Projects</strong><small>Open workspace</small></button>
+    <button data-go="settings"><span class="icon">⚙</span><strong>Settings</strong><small>Configure your agent</small></button>
+  </div></article>
+  <article class="card half"><h3>Recent Tasks</h3><div id="recentTasks"></div></article>
+ </div>
+</section>
+<section class="view" id="view-chat">
+ <div class="card"><h3>✧ DNYAN Assistant <span class="tag">DEMO MODE</span></h3>
+  <div class="chatbox" id="chatbox"><div class="msg bot">नमस्कार! मी DNYAN AI आहे. सध्या मी Phase 1 Demo Mode मध्ये आहे.\n\nतू मला तुझ्या पुढील कामाबद्दल सांगू शकतोस. Live ChatGPT connection Phase 2 मध्ये जोडू.</div></div>
+  <form class="composer" id="chatForm"><input id="chatInput" placeholder="तुझा आदेश इथे लिही..." autocomplete="off"><button class="primary" type="submit">Send ➤</button></form>
+  <p class="muted" style="font-size:11px">Demo replies are local only. कोणताही API key या App मध्ये साठवला जात नाही.</p>
+ </div>
+</section>
+<section class="view" id="view-tasks">
+ <div class="card"><h3>▤ Task Manager</h3><form class="composer" id="taskForm"><input id="taskInput" placeholder="नवीन Task लिही..." maxlength="100"><button class="primary">＋ Add</button></form><div id="taskList" style="margin-top:12px"></div></div>
+</section>
+<section class="view" id="view-projects">
+ <div class="grid">
+  <article class="card half"><span class="icon">⚡</span><h3>ElectroSim</h3><p class="muted" style="font-size:12px">Electrical simulation and component editor project.</p><span class="tag">Project workspace</span></article>
+  <article class="card half"><span class="icon">🎨</span><h3>DP Graphics Designer</h3><p class="muted" style="font-size:12px">Invitation design and website project.</p><span class="tag">Project workspace</span></article>
+  <article class="card" style="grid-column:span 12"><h3>Project Memory</h3><p class="muted" style="font-size:12px">या पहिल्या आवृत्तीत Projects ही sample entries आहेत. पुढे files, project notes आणि searchable memory जोडली जाईल.</p></article>
+ </div>
+</section>
+<section class="view" id="view-settings">
+ <div class="card"><h3>⚙ Settings</h3>
+  <div class="field"><label>Agent Name</label><input value="DNYAN AI" id="agentName"></div>
+  <div class="field"><label>Preferred Language</label><input value="Marathi" id="language"></div>
+  <div class="field"><label>Theme</label><input value="Premium Dark" disabled></div>
+  <button class="primary" id="saveSettings">Save Settings</button>
+  <p class="notice" style="margin-top:15px">Privacy: Phase 1 डेटा या Browser च्या local storage मध्ये राहतो. हा Demo Mode आहे. Sensitive माहिती टाकू नकोस. Browser data clear केल्यास local tasks/settings हटू शकतात.</p>
+  <button class="secondary" id="clearData" style="margin-top:12px;color:#ff9aaa">Clear local demo data</button>
+ </div>
+</section>
+</main>
+<div class="footer">DNYAN AI · Version 0.1.0 · Phase 1 Foundation</div>
+</div>
+<div class="mobilebar" id="mobileNav">
+ <button class="active" data-view="home"><span>⌂</span>Home</button><button data-view="chat"><span>✧</span>Assistant</button><button data-view="tasks"><span>▤</span>Tasks</button><button data-view="projects"><span>▣</span>Projects</button><button data-view="settings"><span>⚙</span>Settings</button>
+</div>
+<script>
+const $=s=>document.querySelector(s);
+const read=(k,f)=>{try{return JSON.parse(localStorage.getItem(k))??f}catch{return f}};
+const write=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+let tasks=read('dnyan_tasks',[]);
+function show(view){
+ document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id==='view-'+view));
+ document.querySelectorAll('[data-view]').forEach(x=>x.classList.toggle('active',x.dataset.view===view));
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.view)));
+document.querySelectorAll('[data-go]').forEach(b=>b.addEventListener('click',()=>show(b.dataset.go)));
+function renderTasks(){
+ $('#taskCount').textContent=tasks.filter(t=>!t.done).length;
+ const html=tasks.length?tasks.map((t,i)=>`<div class="task ${t.done?'done':''}"><button class="check" data-check="${i}" aria-label="Toggle task">${t.done?'✓':''}</button><span class="taskname">${escapeHtml(t.name)}</span><button class="secondary" data-delete="${i}" style="padding:5px 9px">×</button></div>`).join(''):'<p class="muted" style="font-size:12px">अजून Tasks नाहीत. वरून नवीन Task जोडा.</p>';
+ $('#taskList').innerHTML=html;$('#recentTasks').innerHTML=tasks.slice(-3).reverse().map(t=>`<div class="task ${t.done?'done':''}"><span class="taskname">${escapeHtml(t.name)}</span><span class="tag">${t.done?'Done':'Open'}</span></div>`).join('')||'<p class="muted" style="font-size:12px">No recent tasks</p>';
+ document.querySelectorAll('[data-check]').forEach(b=>b.onclick=()=>{tasks[+b.dataset.check].done=!tasks[+b.dataset.check].done;saveTasks()});
+ document.querySelectorAll('[data-delete]').forEach(b=>b.onclick=()=>{tasks.splice(+b.dataset.delete,1);saveTasks()});
+}
+function saveTasks(){write('dnyan_tasks',tasks);renderTasks()}
+function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+$('#taskForm').addEventListener('submit',e=>{e.preventDefault();const v=$('#taskInput').value.trim();if(!v)return;tasks.push({name:v,done:false});$('#taskInput').value='';saveTasks()});
+$('#chatForm').addEventListener('submit',e=>{e.preventDefault();const v=$('#chatInput').value.trim();if(!v)return;const box=$('#chatbox');box.insertAdjacentHTML('beforeend',`<div class="msg user">${escapeHtml(v)}</div><div class="msg bot">तुझा संदेश मिळाला: “${escapeHtml(v)}”\n\nमी सध्या Demo Mode मध्ये आहे. Phase 2 मध्ये सुरक्षित AI connection आणि वास्तविक task planning जोडू.</div>`);$('#chatInput').value='';box.scrollTop=box.scrollHeight});
+$('#saveSettings').onclick=()=>{write('dnyan_settings',{name:$('#agentName').value,language:$('#language').value});$('#systemStatus').textContent='SETTINGS SAVED';setTimeout(()=>$('#systemStatus').textContent='SYSTEM READY',1800)};
+$('#clearData').onclick=()=>{if(confirm('सर्व local demo tasks आणि settings clear करायचे?')){localStorage.removeItem('dnyan_tasks');localStorage.removeItem('dnyan_settings');tasks=[];renderTasks();$('#agentName').value='DNYAN AI';$('#language').value='Marathi'}};
+const settings=read('dnyan_settings',null);if(settings){$('#agentName').value=settings.name||'DNYAN AI';$('#language').value=settings.language||'Marathi'}
+renderTasks();
+if('serviceWorker' in navigator && location.protocol.startsWith('http')){window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}))}
+</script>
+</body></html>
